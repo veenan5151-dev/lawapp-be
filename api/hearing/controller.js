@@ -16,8 +16,8 @@ export const hearingController = {
     },
     async list(req, res) {
         try {
-            const hearings = await hearingService.getHearings(req.params.caseId);
-            res.json(goodResponse(hearings, "Hearings list"));
+            const result = await hearingService.getHearings(req.params.caseId, req.query);
+            res.json(goodResponse(result, "Hearings list"));
         } catch (err) {
             res.status(400).json(failedResponse(err.message));
         }

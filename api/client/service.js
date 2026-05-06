@@ -19,8 +19,60 @@ export const clientService = {
         await User.create(payload);
     },
 
-    async getClients() {
-        const data = await User.findAll({ include: [{ model: Case, as: "cases" }] });
+    async getClients({
+        page = 1,
+        limit = 10,
+        sortBy = "name",
+        sortOrder = "ASC",
+        search = "",
+        filterLinked = null,
+        filterDate = null,
+    } = {}) {
+        const offset = (page - 1) * limit;
+        const where = {};
+
+        // Search by name, phone, address
+        if (search) {
+            where[Op.or] = [
+                { name: { [Op.iLike]: `%${search}%` } },
+                { phone: { [Op.iLike]: `%${search}%` } },
+                { address: { [Op.iLike]: `%${search}%` } },
+            ];
+        }
+
+        // Filter by linked (has cases)
+        if (filterLinked !== null) {
+            where["$cases.id$"] = filterLinked ? { [Op.ne]: null } : null;
+        }
+
+        // Filter by case date (any case linked to client with date in range)
+        let include = [{ model: Case, as: "cases" }];
+        if (filterDate) {
+            include = [
+                {
+                    model: Case,
+                    as: "cases",
+                    where: {
+                        createdAt: filterDate,
+                    },
+                    required: true,
+                },
+            ];
+        }
+
+        // Allowed sort fields
+        const allowedSort = ["name", "address", "phone"];
+        const order = allowedSort.includes(sortBy) ? [[sortBy, sortOrder]] : [["name", "ASC"]];
+
+        const { Op } = (await import("sequelize")).default;
+        const data = await User.findAndCountAll({
+            where,
+            include,
+            offset,
+            limit,
+            order,
+            distinct: true,
+        });
         return data;
     },
 

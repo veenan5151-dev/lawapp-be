@@ -6,6 +6,13 @@ import authValidator from "./validator.js";
 const router = express.Router();
 
 /**
+ * @swagger
+ * tags:
+ *   name: Auth Management APIs
+ *   description: Authentication management APIs
+ */
+
+/**
  * @openapi
  * components:
  *   schemas:
@@ -77,8 +84,7 @@ const router = express.Router();
  * /api/auth/register:
  *   post:
  *     summary: Register a new user (with OTP verification)
- *     tags:
- *       - Auth
+ *     tags: [Auth Management APIs]
  *     requestBody:
  *       required: true
  *       content:
@@ -98,8 +104,7 @@ router.post("/register", validate(authValidator.signup), authController.signup);
  * /api/auth/verify-otp:
  *   post:
  *     summary: Verify OTP for registration
- *     tags:
- *       - Auth
+ *     tags: [Auth Management APIs]
  *     requestBody:
  *       required: true
  *       content:
@@ -119,8 +124,7 @@ router.post("/verify-otp", validate(authValidator.verifyOtp), authController.ver
  * /api/auth/login:
  *   post:
  *     summary: Login with email and password
- *     tags:
- *       - Auth
+ *     tags: [Auth Management APIs]
  *     requestBody:
  *       required: true
  *       content:
@@ -140,8 +144,7 @@ router.post("/login", validate(authValidator.login), authController.login);
  * /api/auth/forgot-password:
  *   post:
  *     summary: Request OTP for password reset
- *     tags:
- *       - Auth
+ *     tags: [Auth Management APIs]
  *     requestBody:
  *       required: true
  *       content:
@@ -165,8 +168,7 @@ router.post(
  * /api/auth/reset-password:
  *   post:
  *     summary: Reset password using OTP
- *     tags:
- *       - Auth
+ *     tags: [Auth Management APIs]
  *     requestBody:
  *       required: true
  *       content:

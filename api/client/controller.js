@@ -14,8 +14,8 @@ export const clientController = {
 
     async list(req, res) {
         try {
-            const clients = await clientService.getClients();
-            res.json(goodResponse({ clients }, "Clients list"));
+            const result = await clientService.getClients(req.query);
+            res.json(goodResponse(result, "Clients list"));
         } catch (err) {
             res.status(400).json(failedResponse(err.message));
         }

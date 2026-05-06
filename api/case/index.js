@@ -44,6 +44,45 @@ const router = express.Router();
  *     summary: List all cases
  *     tags:
  *       - Case
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Page size
+ *       - in: query
+ *         name: sortBy
+ *         schema:
+ *           type: string
+ *           enum: [title, courtName, caseNumber, status]
+ *         description: Sort field
+ *       - in: query
+ *         name: sortOrder
+ *         schema:
+ *           type: string
+ *           enum: [ASC, DESC]
+ *         description: Sort order
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Search by title, case number, or court name
+ *       - in: query
+ *         name: filterStatus
+ *         schema:
+ *           type: string
+ *           enum: [Active, Closed, Pending]
+ *         description: Filter by status
+ *       - in: query
+ *         name: filterClient
+ *         schema:
+ *           type: string
+ *         description: Filter by linked client (clientId)
  *     responses:
  *       200:
  *         description: List of cases

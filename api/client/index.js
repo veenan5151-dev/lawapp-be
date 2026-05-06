@@ -49,6 +49,44 @@ router.post("/", clientController.create);
  *   get:
  *     summary: Get all clients
  *     tags: [Clients]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Page size
+ *       - in: query
+ *         name: sortBy
+ *         schema:
+ *           type: string
+ *           enum: [name, address, phone]
+ *         description: Sort field
+ *       - in: query
+ *         name: sortOrder
+ *         schema:
+ *           type: string
+ *           enum: [ASC, DESC]
+ *         description: Sort order
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Search by name, phone, or address
+ *       - in: query
+ *         name: filterLinked
+ *         schema:
+ *           type: boolean
+ *         description: Filter by linked cases (true/false)
+ *       - in: query
+ *         name: filterDate
+ *         schema:
+ *           type: string
+ *         description: Filter by case date range (comma separated, e.g. 2024-01-01,2024-12-31)
  *     responses:
  *       200:
  *         description: List of clients

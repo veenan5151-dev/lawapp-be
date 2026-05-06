@@ -13,8 +13,8 @@ export const caseController = {
     },
     async list(req, res) {
         try {
-            const cases = await caseService.getCases();
-            res.json(goodResponse({ cases }, "Cases list"));
+            const result = await caseService.getCases(req.query);
+            res.json(goodResponse(result, "Cases list"));
         } catch (err) {
             res.status(400).json(failedResponse(err.message));
         }
