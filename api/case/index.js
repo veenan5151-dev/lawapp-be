@@ -4,12 +4,18 @@ import { caseController } from "./controller.js";
 const router = express.Router();
 
 /**
+ * @swagger
+ * tags:
+ *   name: Case
+ *   description: Case management APIs
+ */
+
+/**
  * @openapi
  * /api/cases:
  *   post:
  *     summary: Create a new case
- *     tags:
- *       - Case
+ *     tags: [Case]
  *     requestBody:
  *       required: true
  *       content:

@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
-import USER_STATUSES from "../helper/enum/userStatus.js";
+import USER_STATUSES from "../helper/enum/status.js";
 import Unauthorized from "../helper/exception/unauthorized.js";
-import Login from "../models/Login.js";
 import User from "../models/User.js";
 
 const verifyToken = async (req, audience) => {
@@ -19,20 +18,11 @@ const verifyToken = async (req, audience) => {
         throw new Unauthorized("Invalid token.");
     }
 
-    const user = await Login.findOne({
+    const user = await User.findOne({
         where: {
             id: decoded.id,
+            status: [USER_STATUSES.ACTIVE],
         },
-        include: [
-            {
-                model: User,
-                as: "user",
-                where: {
-                    is_deleted: false,
-                    status: "active",
-                },
-            },
-        ],
         raw: true,
     });
 

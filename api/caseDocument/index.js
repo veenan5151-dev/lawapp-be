@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/caseDocument/{caseId}:
+ * /api/case-documents/{caseId}:
  *   post:
  *     summary: Upload a document to a case
  *     tags: [CaseDocuments]
@@ -52,7 +52,7 @@ const router = express.Router();
  *         description: List of documents
  *       400:
  *         description: Error
- * /api/caseDocument/{id}:
+ * /api/case-documents/{id}:
  *   delete:
  *     summary: Delete a document
  *     tags: [CaseDocuments]

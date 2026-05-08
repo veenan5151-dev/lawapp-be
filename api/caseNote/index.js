@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/caseNote/{caseId}:
+ * /api/case-notes/{caseId}:
  *   post:
  *     summary: Add a note to a case
  *     tags: [CaseNotes]
@@ -49,7 +49,7 @@ const router = express.Router();
  *         description: List of notes
  *       400:
  *         description: Error
- * /api/caseNote/{id}:
+ * /api/case-notes/{id}:
  *   put:
  *     summary: Update a note
  *     tags: [CaseNotes]

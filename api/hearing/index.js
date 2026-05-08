@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/hearing/{caseId}:
+ * /api/hearings/{caseId}:
  *   post:
  *     summary: Add a hearing to a case
  *     tags: [Hearings]
@@ -82,7 +82,7 @@ const router = express.Router();
  *         description: List of hearings
  *       400:
  *         description: Error
- * /api/hearing/{id}:
+ * /api/hearings/{id}:
  *   put:
  *     summary: Update a hearing
  *     tags: [Hearings]
